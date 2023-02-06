@@ -1,4 +1,4 @@
-import { AppComponent } from './../../app.component';
+import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,9 +8,16 @@ import { Component } from '@angular/core';
 })
 export class CategoriaComponent {
 
+  constructor(private apiService: ApiService) {
+    this.categorias = [];
+    this.listarAllCategorias();
+  }
+
   categorias: Array<any>;
 
-  constructor(private app: AppComponent) {
-    this.categorias = app.categorias;
+  listarAllCategorias() {
+    this.apiService.listAllCategorias().subscribe(dados => {
+      this.categorias = dados.content
+    });
   }
 }

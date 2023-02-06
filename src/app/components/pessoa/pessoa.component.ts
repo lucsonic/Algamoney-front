@@ -1,4 +1,4 @@
-import { AppComponent } from './../../app.component';
+import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,10 +8,17 @@ import { Component } from '@angular/core';
 })
 export class PessoaComponent {
 
-  pessoas: Array<any>;
 
- constructor(private app: AppComponent) {
-    this.pessoas = app.pessoas;
+  constructor(private apiService: ApiService) {
+    this.pessoas = [];
+    this.listarAllPessoas();
   }
 
+  pessoas: Array<any>;
+
+  listarAllPessoas() {
+    this.apiService.listAllPessoas().subscribe(dados => {
+      this.pessoas = dados.content
+    });
+  }
 }
