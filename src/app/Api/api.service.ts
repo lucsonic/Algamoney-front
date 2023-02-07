@@ -17,4 +17,12 @@ export class ApiService {
   listAllPessoas(): Observable<any> {
     return this.http.get<any>(`${API_PATH}pessoas`);
   }
+
+  criar(categoria: any) {
+    return this.http.post(`${API_PATH}categorias`, categoria);
+  }
+
+  editar(categoria: any) {
+    return this.http.put(`${API_PATH}categorias`, categoria);
+  }
 }
