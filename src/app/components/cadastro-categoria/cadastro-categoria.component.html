@@ -1,9 +1,9 @@
 <h3>Cadastro de Categorias</h3>
 <div>
-  <form class="example-form" method="post" #frm="ngForm" (ngSubmit)="criar(frm.value)">
+  <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
     <mat-form-field class="example-full-width">
       <mat-label>Nome da Categoria</mat-label>
-      <input matInput placeholder="Nome da categoria" [(ngModel)]="categoria.nome" name="nome" required>
+      <input matInput placeholder="Nome da categoria" formControlName="nome" required>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
   </form>

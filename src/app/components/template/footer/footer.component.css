@@ -2,10 +2,13 @@
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  background-color: #e8e8e8;
+  height: 5%;
+  color: black;
 }
 
-.foot > span {
+.footer > span {
   font-size: 1rem;
   font-weight: 300;
 }

@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
 import {FormControl} from '@angular/forms';
@@ -9,7 +11,7 @@ import { TooltipPosition } from '@angular/material/tooltip';
 })
 export class CategoriaComponent {
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
     this.categorias = [];
     this.listarAllCategorias();
   }
@@ -20,6 +22,23 @@ export class CategoriaComponent {
     this.apiService.listAllCategorias().subscribe(dados => {
       this.categorias = dados.content
     });
+  }
+
+  editarCategoria(element: any) {
+    let item = element;
+    this.router.navigate([`/editar/${item}`], {
+      relativeTo: this.route
+    });
+  }
+
+  excluirCategoria(element: any) {
+    const categoria = {
+      codigo: element
+    }
+    this.apiService.excluir(categoria).subscribe(response => {
+      window.location.reload()
+      this.toastr.success('Categoria excluída com sucesso!', 'Sucesso!');
+    })
   }
 
   displayedColumns: string[] = ['codigo', 'nome', 'acao'];

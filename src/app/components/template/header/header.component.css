@@ -3,12 +3,14 @@
   top: 0;
   display: flex;
   align-items: center;
+  font-size: 16px;
 }
 
 .header a {
   display: flex;
   align-items: center;
   text-decoration: none;
+  color: black;
 }
 
 .header .logo {
@@ -21,4 +23,8 @@
 
 .header .title-group i {
   padding-right: 5px;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
 }

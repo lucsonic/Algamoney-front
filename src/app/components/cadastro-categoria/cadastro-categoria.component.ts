@@ -1,8 +1,13 @@
 import { ApiService } from './../../Api/api.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
+export interface Categoria {
+  codigo: number,
+  nome: string
+}
 
 @Component({
   selector: 'app-cadastro-categoria',
@@ -12,24 +17,54 @@ import { ToastrService } from 'ngx-toastr';
 export class CadastroCategoriaComponent {
 
   categoria: any;
+  codigo: any;
+  frm: FormGroup;
 
-  constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) {
+  constructor
+    (private apiService: ApiService,
+    private router: Router,
+    private toastr: ToastrService,
+    private route: ActivatedRoute
+  ) {
     this.categoria = {};
-   }
+    this.codigo = this.route.snapshot.params["codigo"];
+    this.frm = new FormGroup({
+      nome: new FormControl('')
+    })
+    this.loadCategoria()
+  }
 
-  criar(frm: FormGroup) {
-    this.apiService.criar(this.categoria).subscribe(resposta => {
+  loadCategoria() {
+    if (!this.codigo) {
+      return
+    }
+    const categoria = {codigo: this.codigo}
+    this.apiService.findCategoria(categoria).subscribe(r => {
+       this.frm.controls['nome'].setValue(r.nome)
+    })
+  }
+
+  criar() {
+    const categoria = { nome: this.frm.controls['nome'].value }
+
+    this.apiService.criar(categoria).subscribe(response => {
       this.router.navigate(['categorias']);
       this.toastr.success('Categoria cadastrada com sucesso!', 'Sucesso!');
     })
   }
 
-  editar(categoria: any) {
-    if (this.apiService.editar(categoria)) {
+  alterar() {
+    const categoria = {
+      codigo: this.codigo,
+      nome: this.frm.controls['nome'].value
+    }
+    this.apiService.alterar(categoria).subscribe(response => {
       this.router.navigate(['categorias']);
       this.toastr.success('Categoria alterada com sucesso!', 'Sucesso!');
-    } else {
-      this.toastr.error('Erro durante a edição!', 'Erro!');
-    }
+    })
+  }
+
+  salvar() {
+    this.codigo ? this.alterar() : this.criar();
   }
 }

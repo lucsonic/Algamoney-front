@@ -17,3 +17,18 @@ table td {
 .divbotaonovo {
   margin-bottom: 25px;
 }
+
+.mat-column-codigo {
+  width: 10%;
+  text-align: center;
+}
+
+.mat-column-nome {
+  width: 80%;
+}
+
+.mat-column-acao {
+  width: 10%;
+  text-align: center;
+  white-space: unset;
+}

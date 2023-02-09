@@ -9,7 +9,8 @@ const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'categorias', component: CategoriaComponent },
   { path: 'nova-categoria', component: CadastroCategoriaComponent },
-  { path: 'editar', component: CadastroCategoriaComponent },
+  { path: 'editar/:codigo', component: CadastroCategoriaComponent },
+  { path: 'excluir/:codigo', component: CategoriaComponent },
   { path: 'pessoas', component: PessoaComponent },
 ];
 

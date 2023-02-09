@@ -14,6 +14,10 @@ export class ApiService {
     return this.http.get<any>(`${API_PATH}categorias`);
   }
 
+  findCategoria(categoria: any): Observable<any> {
+    return this.http.get<any>(`${API_PATH}categorias/${categoria.codigo}`, categoria);
+  }
+
   listAllPessoas(): Observable<any> {
     return this.http.get<any>(`${API_PATH}pessoas`);
   }
@@ -22,7 +26,11 @@ export class ApiService {
     return this.http.post(`${API_PATH}categorias`, categoria);
   }
 
-  editar(categoria: any) {
+  alterar(categoria: any) {
     return this.http.put(`${API_PATH}categorias/${categoria.codigo}`, categoria);
+  }
+
+  excluir(categoria: any) {
+    return this.http.delete(`${API_PATH}categorias/${categoria.codigo}`, categoria);
   }
 }

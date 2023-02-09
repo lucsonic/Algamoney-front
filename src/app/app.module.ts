@@ -22,10 +22,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { CadastroCategoriaComponent } from './components/cadastro-categoria/cadastro-categoria.component';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ToastrModule } from 'ngx-toastr';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -53,10 +56,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTableModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     ToastrModule,
     ToastrModule.forRoot(),
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
