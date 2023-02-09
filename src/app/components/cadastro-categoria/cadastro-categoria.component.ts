@@ -24,10 +24,12 @@ export class CadastroCategoriaComponent {
     })
   }
 
-  editar(frm: FormGroup) {
-    this.apiService.editar(this.categoria).subscribe(resposta => {
+  editar(categoria: any) {
+    if (this.apiService.editar(categoria)) {
       this.router.navigate(['categorias']);
       this.toastr.success('Categoria alterada com sucesso!', 'Sucesso!');
-    })
+    } else {
+      this.toastr.error('Erro durante a edição!', 'Erro!');
+    }
   }
 }

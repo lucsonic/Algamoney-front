@@ -23,6 +23,6 @@ export class ApiService {
   }
 
   editar(categoria: any) {
-    return this.http.put(`${API_PATH}categorias`, categoria);
+    return this.http.put(`${API_PATH}categorias/${categoria.codigo}`, categoria);
   }
 }

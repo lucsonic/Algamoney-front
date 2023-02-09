@@ -1,5 +1,7 @@
 import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import { TooltipPosition } from '@angular/material/tooltip';
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
@@ -20,5 +22,9 @@ export class CategoriaComponent {
     });
   }
 
-  displayedColumns: string[] = ['codigo', 'nome'];
+  displayedColumns: string[] = ['codigo', 'nome', 'acao'];
+
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[0]);
+
 }

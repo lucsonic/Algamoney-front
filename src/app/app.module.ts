@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ToastrModule } from 'ngx-toastr';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     MatPaginatorModule,
     ToastrModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
