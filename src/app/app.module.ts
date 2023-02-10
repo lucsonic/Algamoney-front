@@ -29,6 +29,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MatCardModule} from '@angular/material/card';
     HeaderComponent,
     ContentComponent,
     FooterComponent,
-    CadastroCategoriaComponent
+    CadastroCategoriaComponent,
+    PessoaFormComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import {MatCardModule} from '@angular/material/card';
     MatTooltipModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

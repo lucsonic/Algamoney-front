@@ -22,10 +22,10 @@ export class CadastroCategoriaComponent {
 
   constructor
     (private apiService: ApiService,
-    private router: Router,
-    private toastr: ToastrService,
-    private route: ActivatedRoute
-  ) {
+      private router: Router,
+      private toastr: ToastrService,
+      private route: ActivatedRoute
+    ) {
     this.categoria = {};
     this.codigo = this.route.snapshot.params["codigo"];
     this.frm = new FormGroup({
@@ -38,16 +38,16 @@ export class CadastroCategoriaComponent {
     if (!this.codigo) {
       return
     }
-    const categoria = {codigo: this.codigo}
+    const categoria = { codigo: this.codigo }
     this.apiService.findCategoria(categoria).subscribe(r => {
-       this.frm.controls['nome'].setValue(r.nome)
+      this.frm.controls['nome'].setValue(r.nome)
     })
   }
 
   criar() {
     const categoria = { nome: this.frm.controls['nome'].value }
 
-    this.apiService.criar(categoria).subscribe(response => {
+    this.apiService.criarCategoria(categoria).subscribe(response => {
       this.router.navigate(['categorias']);
       this.toastr.success('Categoria cadastrada com sucesso!', 'Sucesso!');
     })
@@ -58,7 +58,7 @@ export class CadastroCategoriaComponent {
       codigo: this.codigo,
       nome: this.frm.controls['nome'].value
     }
-    this.apiService.alterar(categoria).subscribe(response => {
+    this.apiService.alterarCategoria(categoria).subscribe(response => {
       this.router.navigate(['categorias']);
       this.toastr.success('Categoria alterada com sucesso!', 'Sucesso!');
     })

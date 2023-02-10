@@ -22,15 +22,31 @@ export class ApiService {
     return this.http.get<any>(`${API_PATH}pessoas`);
   }
 
-  criar(categoria: any) {
+  criarCategoria(categoria: any) {
     return this.http.post(`${API_PATH}categorias`, categoria);
   }
 
-  alterar(categoria: any) {
+  alterarCategoria(categoria: any) {
     return this.http.put(`${API_PATH}categorias/${categoria.codigo}`, categoria);
   }
 
-  excluir(categoria: any) {
+  excluirCategoria(categoria: any) {
     return this.http.delete(`${API_PATH}categorias/${categoria.codigo}`, categoria);
+  }
+
+  criarPessoa(pessoa: any) {
+    return this.http.post(`${API_PATH}pessoas`, pessoa);
+  }
+
+  findPessoa(pessoa: any): Observable<any> {
+    return this.http.get<any>(`${API_PATH}pessoas/${pessoa.codigo}`, pessoa);
+  }
+
+  alterarPessoa(pessoa: any) {
+    return this.http.put(`${API_PATH}pessoas/${pessoa.codigo}`, pessoa);
+  }
+
+  excluirPessoa(pessoa: any) {
+    return this.http.delete(`${API_PATH}pessoas/${pessoa.codigo}`, pessoa);
   }
 }

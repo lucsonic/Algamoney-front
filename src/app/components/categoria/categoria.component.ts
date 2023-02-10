@@ -26,7 +26,7 @@ export class CategoriaComponent {
 
   editarCategoria(element: any) {
     let item = element;
-    this.router.navigate([`/editar/${item}`], {
+    this.router.navigate([`/editar-categoria/${item}`], {
       relativeTo: this.route
     });
   }
@@ -35,7 +35,7 @@ export class CategoriaComponent {
     const categoria = {
       codigo: element
     }
-    this.apiService.excluir(categoria).subscribe(response => {
+    this.apiService.excluirCategoria(categoria).subscribe(response => {
       window.location.reload()
       this.toastr.success('Categoria excluída com sucesso!', 'Sucesso!');
     })

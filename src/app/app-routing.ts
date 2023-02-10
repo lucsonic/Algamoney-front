@@ -1,3 +1,4 @@
+import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { CadastroCategoriaComponent } from './components/cadastro-categoria/cadastro-categoria.component';
 import { ModuleWithProviders } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
@@ -9,9 +10,11 @@ const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'categorias', component: CategoriaComponent },
   { path: 'nova-categoria', component: CadastroCategoriaComponent },
-  { path: 'editar/:codigo', component: CadastroCategoriaComponent },
-  { path: 'excluir/:codigo', component: CategoriaComponent },
+  { path: 'editar-categoria/:codigo', component: CadastroCategoriaComponent },
+  { path: 'excluir-categoria/:codigo', component: CategoriaComponent },
   { path: 'pessoas', component: PessoaComponent },
+  { path: 'nova-pessoa', component: PessoaFormComponent },
+  { path: 'editar-pessoa/:codigo', component: PessoaFormComponent },
 ];
 
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(APP_ROUTES);
