@@ -1,4 +1,6 @@
+import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -13,7 +15,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaComponent {
 
 
-  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private dialog: MatDialog) {
     this.pessoas = [];
     this.listarAllPessoas();
   }
@@ -40,6 +46,23 @@ export class PessoaComponent {
     this.apiService.excluirPessoa(pessoa).subscribe(response => {
       window.location.reload()
       this.toastr.success('Pessoa excluída com sucesso!', 'Sucesso!');
+    })
+  }
+
+  excluir(codigo: number): void {
+    const dialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '650px',
+      data: {
+        message: 'Deseja relamente excluir o registro?',
+        title: 'Exclusão de Pessoa'
+      }
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (!result?.confirm) {
+        return
+      }
+      this.excluirPessoa(codigo)
     })
   }
 

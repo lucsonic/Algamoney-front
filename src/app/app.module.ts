@@ -31,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { MatSelectModule } from '@angular/material/select';
-
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { MatSelectModule } from '@angular/material/select';
     ContentComponent,
     FooterComponent,
     CadastroCategoriaComponent,
-    PessoaFormComponent
+    PessoaFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressBarModule,
     MatDialogModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

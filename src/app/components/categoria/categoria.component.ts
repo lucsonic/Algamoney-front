@@ -1,8 +1,10 @@
+import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../Api/api.service';
 import { Component } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
 @Component({
   selector: 'app-categoria',
@@ -11,7 +13,12 @@ import { TooltipPosition } from '@angular/material/tooltip';
 })
 export class CategoriaComponent {
 
-  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private dialog: MatDialog) {
     this.categorias = [];
     this.listarAllCategorias();
   }
@@ -38,6 +45,23 @@ export class CategoriaComponent {
     this.apiService.excluirCategoria(categoria).subscribe(response => {
       window.location.reload()
       this.toastr.success('Categoria excluída com sucesso!', 'Sucesso!');
+    })
+  }
+
+  excluir(codigo: number): void {
+    const dialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '650px',
+      data: {
+        message: 'Deseja relamente excluir a categoria?',
+        title: 'Exclusão de Catergoria'
+      }
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (!result?.confirm) {
+        return
+      }
+      this.excluirCategoria(codigo)
     })
   }
 

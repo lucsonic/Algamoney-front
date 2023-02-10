@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+  {{message}}
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" mat-dialog-close (click)="confirm()">Não</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="confirm(true)">Confirmar</button>
+</div>
