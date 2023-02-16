@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+}
+table tr:hover {
+  background: whitesmoke;
+}
+
+table th {
+  background-color: lightgray;
+  font-size: 18px;
+}
+
+table td {
+  font-size: 16px;
+}
+
+.divbotaonovo {
+  margin-bottom: 25px;
+}
+
+.mat-column-codigo {
+  width: 10%;
+  text-align: center;
+}
+
+.mat-column-nome {
+  width: 45%;
+}
+
+.mat-column-cpf {
+  width: 10%;
+}
+
+.mat-column-login {
+  width: 25%;
+}
+
+.mat-column-acao {
+  width: 10%;
+  text-align: center;
+  white-space: unset;
+}

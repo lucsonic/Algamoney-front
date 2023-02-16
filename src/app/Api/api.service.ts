@@ -22,6 +22,10 @@ export class ApiService {
     return this.http.get<any>(`${API_PATH}pessoas`);
   }
 
+  listAllUsuarios(): Observable<any> {
+    return this.http.get<any>(`${API_PATH}usuarios`);
+  }
+
   criarCategoria(categoria: any) {
     return this.http.post(`${API_PATH}categorias`, categoria);
   }
@@ -48,5 +52,9 @@ export class ApiService {
 
   excluirPessoa(pessoa: any) {
     return this.http.delete(`${API_PATH}pessoas/${pessoa.codigo}`, pessoa);
+  }
+
+  excluirUsuario(usuario: any) {
+    return this.http.delete(`${API_PATH}usuarios/${usuario.codigo}`, usuario);
   }
 }

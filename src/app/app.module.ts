@@ -33,6 +33,7 @@ import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.compon
 import { MatSelectModule } from '@angular/material/select';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { MatDividerModule } from '@angular/material/divider';
     FooterComponent,
     CadastroCategoriaComponent,
     PessoaFormComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

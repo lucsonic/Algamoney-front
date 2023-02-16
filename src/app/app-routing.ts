@@ -1,3 +1,4 @@
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { CadastroCategoriaComponent } from './components/cadastro-categoria/cadastro-categoria.component';
 import { ModuleWithProviders } from '@angular/core';
@@ -15,6 +16,7 @@ const APP_ROUTES: Routes = [
   { path: 'pessoas', component: PessoaComponent },
   { path: 'nova-pessoa', component: PessoaFormComponent },
   { path: 'editar-pessoa/:codigo', component: PessoaFormComponent },
+  { path: 'usuarios', component: UsuariosComponent },
 ];
 
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(APP_ROUTES);
