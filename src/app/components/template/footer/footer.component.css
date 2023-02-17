@@ -2,13 +2,14 @@
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: center;
-  background-color: #e8e8e8;
+  justify-content: right;
+  background-color: #EEE8AA;
   height: 5%;
   color: black;
+  z-index: 1;
 }
 
 .footer > span {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 100;
 }

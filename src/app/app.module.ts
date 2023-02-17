@@ -34,6 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     CadastroCategoriaComponent,
     PessoaFormComponent,
     ConfirmDialogComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuarioFormComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

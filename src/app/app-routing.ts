@@ -1,3 +1,4 @@
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { PessoaFormComponent } from './components/pessoa-form/pessoa-form.component';
 import { CadastroCategoriaComponent } from './components/cadastro-categoria/cadastro-categoria.component';
@@ -17,6 +18,8 @@ const APP_ROUTES: Routes = [
   { path: 'nova-pessoa', component: PessoaFormComponent },
   { path: 'editar-pessoa/:codigo', component: PessoaFormComponent },
   { path: 'usuarios', component: UsuariosComponent },
+  { path: 'novo-usuario', component: UsuarioFormComponent },
+  { path: 'editar-usuario/:codigo', component: UsuarioFormComponent }
 ];
 
 export const routing: ModuleWithProviders<any> = RouterModule.forRoot(APP_ROUTES);

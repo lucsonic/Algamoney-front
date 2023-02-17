@@ -54,7 +54,20 @@ export class ApiService {
     return this.http.delete(`${API_PATH}pessoas/${pessoa.codigo}`, pessoa);
   }
 
+  criarUsuario(usuario: any) {
+    return this.http.post(`${API_PATH}usuarios`, usuario);
+  }
+
   excluirUsuario(usuario: any) {
     return this.http.delete(`${API_PATH}usuarios/${usuario.codigo}`, usuario);
   }
+
+  findUsuario(usuario: any): Observable<any> {
+    return this.http.get<any>(`${API_PATH}usuarios/${usuario.codigo}`, usuario);
+  }
+
+  alterarUsuario(usuario: any) {
+    return this.http.put(`${API_PATH}usuarios/${usuario.codigo}`, usuario);
+  }
+
 }

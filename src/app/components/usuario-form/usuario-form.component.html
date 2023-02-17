@@ -1,0 +1,27 @@
+<h3>Cadastro de Pessoas</h3>
+<div>
+  <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome da pessoa" formControlName="nome" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput placeholder="CPF" formControlName="cpf" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" formControlName="login" required>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!codigo" class="example-full-width">
+      <mat-label>Senha</mat-label>
+      <input matInput placeholder="Senha" type="password" formControlName="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
+  </form>
+</div>
