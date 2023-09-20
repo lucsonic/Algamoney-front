@@ -1,7 +1,8 @@
 .sidenav {
-  background-color: #f6f6e0;
+  /* background-color: #E8E8E8; */
   width: 15%;
   z-index: 0;
+  background-image: linear-gradient(to bottom, #8bade0, #a1bbe4, #b6c9e7, #ccd8eb, #e1e6ee);
 }
 
 .sidenav a {
@@ -11,4 +12,3 @@
 .sidenav i {
   padding-right: 10px;
 }
-

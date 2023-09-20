@@ -27,6 +27,7 @@ export class PessoaFormComponent {
   pessoa: any;
   codigo: any;
   frm: FormGroup;
+  titulo: any;
 
   constructor
     (private apiService: ApiService,
@@ -35,6 +36,7 @@ export class PessoaFormComponent {
       private route: ActivatedRoute
     ) {
     this.pessoa = {};
+    this.titulo = "Cadastro de Clientes";
     this.codigo = this.route.snapshot.params["codigo"];
     this.frm = new FormGroup({
       nome: new FormControl(''),
@@ -48,7 +50,10 @@ export class PessoaFormComponent {
       estado: new FormControl('')
     })
     this.loadPessoa()
+    this.loadEstados()
   }
+
+  estados: Array<any>;
 
   loadPessoa() {
     if (!this.codigo) {
@@ -108,5 +113,11 @@ export class PessoaFormComponent {
 
   salvar() {
     this.codigo ? this.alterar() : this.criar();
+  }
+
+  loadEstados() {
+    this.apiService.listAllEstados().subscribe(dados => {
+      this.estados = dados
+    });
   }
 }

@@ -3,13 +3,14 @@
   bottom: 0;
   display: flex;
   justify-content: right;
-  background-color: #EEE8AA;
+  /* background-color: #B0E0E6; */
+    background-image: linear-gradient(to bottom, #8bade0, #a1bbe4, #b6c9e7, #ccd8eb, #e1e6ee);
   height: 5%;
   color: black;
   z-index: 1;
 }
 
-.footer > span {
+.footer>span {
   font-size: 1rem;
   font-weight: 100;
 }

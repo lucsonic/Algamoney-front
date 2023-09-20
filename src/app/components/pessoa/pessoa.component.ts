@@ -2,33 +2,60 @@ import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.compo
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from './../../Api/api.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-pessoa',
   templateUrl: './pessoa.component.html',
   styleUrls: ['./pessoa.component.css']
 })
-export class PessoaComponent {
+export class PessoaComponent implements OnInit {
+  titulo: any;
+  displayedColumns: string[] = ['codigo', 'nome', 'logradouro', 'cep', 'ativo', 'acao'];
+  dataSource: MatTableDataSource<any>;
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private dialog: MatDialog) {
-    this.pessoas = [];
-    this.listarAllPessoas();
+    this.titulo = 'Clientes Cadastrados';
   }
 
-  pessoas: Array<any>;
+  ngOnInit() {
+    this.listarAllPessoas();
+    this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+    this.paginator._intl.nextPageLabel = 'Próxima página';
+    this.paginator._intl.previousPageLabel = 'Página anterior';
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   listarAllPessoas() {
     this.apiService.listAllPessoas().subscribe(dados => {
-      this.pessoas = dados.content
+      this.dataSource = new MatTableDataSource(dados);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      const sortState: Sort = { active: 'nome', direction: 'asc' };
+      this.sort.active = sortState.active;
+      this.sort.direction = sortState.direction;
+      this.sort.sortChange.emit(sortState);
     });
   }
 
@@ -64,9 +91,7 @@ export class PessoaComponent {
       }
       this.excluirPessoa(codigo)
     })
-  }
-
-  displayedColumns: string[] = ['codigo', 'nome', 'logradouro', 'cep', 'ativo', 'acao'];
+  } 
 
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);

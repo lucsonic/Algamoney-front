@@ -1,84 +1,67 @@
-<h3>Cadastro de Pessoas</h3>
-<div>
-  <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
+<h3 class="titulo">{{titulo}}</h3>
+<mat-card>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
+      <div class="divLinha">
+        <mat-form-field class="width-35" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome da pessoa" formControlName="nome" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-40" appearance="outline">
+          <mat-label>Endereço</mat-label>
+          <input matInput placeholder="Endereço" formControlName="logradouro" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-25" appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input matInput placeholder="Complemento" formControlName="complemento" required>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome da pessoa" formControlName="nome" required>
-    </mat-form-field>
+      <div class="divLinha">
+        <mat-form-field class="width-15" appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Número" formControlName="numero" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-35" appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput placeholder="Bairro" formControlName="bairro" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-35" appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput placeholder="Cidade" formControlName="cidade" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-15" appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="CEP" maxlength="9" [mask]="'00000-000'" formControlName="cep" required>
+          </mat-form-field>
+      </div>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Endereço</mat-label>
-      <input matInput placeholder="Endereço" formControlName="logradouro" required>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Complemento</mat-label>
-      <input matInput placeholder="Complemento" formControlName="complemento" required>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Número</mat-label>
-      <input matInput placeholder="Número" formControlName="numero" required>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Bairro</mat-label>
-      <input matInput placeholder="Bairro" formControlName="bairro" required>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Cidade</mat-label>
-      <input matInput placeholder="Cidade" formControlName="cidade" required>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>CEP</mat-label>
-      <input matInput placeholder="CEP" formControlName="cep" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Estado</mat-label>
-      <select matNativeControl required formControlName="estado">
-        <option value="AC">Acre</option>
-        <option value="AL">Alagoas</option>
-        <option value="AP">Amapá</option>
-        <option value="AM">Amazonas</option>
-        <option value="BA">Bahia</option>
-        <option value="CE">Ceará</option>
-        <option value="DF">Distrito Federal</option>
-        <option value="ES">Espírito Santo</option>
-        <option value="GO">Goiás</option>
-        <option value="MA">Maranhão</option>
-        <option value="MT">Mato Grosso</option>
-        <option value="MS">Mato Grosso do Sul</option>
-        <option value="MG">Minas Gerais</option>
-        <option value="PA">Pará</option>
-        <option value="PB">Paraíba</option>
-        <option value="PR">Paraná</option>
-        <option value="PE">Pernambuco</option>
-        <option value="PI">Piauí</option>
-        <option value="RJ">Rio de Janeiro</option>
-        <option value="RN">Rio Grande do Norte</option>
-        <option value="RS">Rio Grande do Sul</option>
-        <option value="RO">Rondônia</option>
-        <option value="RR">Roraima</option>
-        <option value="SC">Santa Catarina</option>
-        <option value="SP">São Paulo</option>
-        <option value="SE">Sergipe</option>
-        <option value="TO">Tocantins</option>
-        <option value="EX">Estrangeiro</option>
-      </select>
-    </mat-form-field>
-    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <mat-form-field appearance="fill">
-      <mat-label>Status</mat-label>
-      <select matNativeControl required formControlName="ativo">
-        <option value="true">Ativo</option>
-        <option value="false">Inativo</option>
-      </select>
-    </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
-  </form>
-</div>
+      <div class="divLinha">
+        <mat-form-field class="width-20" appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select matNativeControl required formControlName="estado">
+            <mat-option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.descricao}}</mat-option>
+          </mat-select>
+          </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field class="width-15" appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select matNativeControl required formControlName="ativo">
+            <mat-option value="true">Ativo</mat-option>
+            <mat-option value="false">Inativo</mat-option>
+          </mat-select>
+          </mat-form-field>
+      </div>
+      <div class="row footerPage">
+        <button mat-raised-button color="warn" type="button" routerLink="/pessoas">Voltar</button>
+        &nbsp;
+        <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
+      </div>
+    </form>
+  </mat-card-content>
+  </mat-card>

@@ -19,6 +19,7 @@ export class CadastroCategoriaComponent {
   categoria: any;
   codigo: any;
   frm: FormGroup;
+  titulo: any;
 
   constructor
     (private apiService: ApiService,
@@ -28,6 +29,7 @@ export class CadastroCategoriaComponent {
     ) {
     this.categoria = {};
     this.codigo = this.route.snapshot.params["codigo"];
+    this.titulo = "Cadastro de Categorias";
     this.frm = new FormGroup({
       nome: new FormControl('')
     })

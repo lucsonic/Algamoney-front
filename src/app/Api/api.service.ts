@@ -70,4 +70,8 @@ export class ApiService {
     return this.http.put(`${API_PATH}usuarios/${usuario.codigo}`, usuario);
   }
 
+  listAllEstados(): Observable<any> {
+    return this.http.get<any>(`${API_PATH}estados`);
+  }
+
 }

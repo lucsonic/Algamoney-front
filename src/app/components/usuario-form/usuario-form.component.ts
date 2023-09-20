@@ -14,6 +14,7 @@ export class UsuarioFormComponent {
   usuario: any;
   codigo: any;
   frm: FormGroup;
+  titulo: any;
 
   constructor
     (private apiService: ApiService,
@@ -22,6 +23,7 @@ export class UsuarioFormComponent {
       private route: ActivatedRoute
     ) {
     this.usuario = {};
+    this.titulo = "Cadastro de Usuários";
     this.codigo = this.route.snapshot.params["codigo"];
     this.frm = new FormGroup({
       nome: new FormControl(''),
@@ -76,5 +78,4 @@ export class UsuarioFormComponent {
   salvar() {
     this.codigo ? this.alterar() : this.criar();
   }
-
 }

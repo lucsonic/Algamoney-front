@@ -1,10 +1,16 @@
-<h3>Cadastro de Categorias</h3>
-<div>
-  <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
-    <mat-form-field class="example-full-width">
-      <mat-label>Nome da Categoria</mat-label>
-      <input matInput placeholder="Nome da categoria" formControlName="nome" required>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
-  </form>
-</div>
+<h3 class="titulo">{{titulo}}</h3>
+<mat-card>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="frm" (ngSubmit)="salvar()">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Nome da Categoria</mat-label>
+        <input matInput placeholder="Nome da categoria" formControlName="nome" required>
+      </mat-form-field>
+      <div class="row footerPage">
+        <button mat-raised-button color="warn" type="button" routerLink="/categorias">Voltar</button>
+        &nbsp;
+        <button mat-raised-button color="primary" type="submit" [disabled]="frm.invalid">Salvar</button>
+      </div>
+    </form>
+  </mat-card-content>
+  </mat-card>

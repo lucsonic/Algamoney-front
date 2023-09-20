@@ -36,6 +36,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NgxMaskModule } from 'ngx-mask-2';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +79,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatDialogModule,
     MatCardModule,
     MatSelectModule,
-    MatDividerModule
+    MatDividerModule,
+    NgxMaskModule.forRoot(),
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

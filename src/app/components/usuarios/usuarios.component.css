@@ -24,11 +24,11 @@ table td {
 }
 
 .mat-column-nome {
-  width: 45%;
+  width: 40%;
 }
 
 .mat-column-cpf {
-  width: 10%;
+  width: 15%;
 }
 
 .mat-column-login {
@@ -40,3 +40,11 @@ table td {
   text-align: center;
   white-space: unset;
 }
+
+ .titulo {
+   color: navy;
+ }
+
+ .example-full-width {
+   width: 100%;
+ }

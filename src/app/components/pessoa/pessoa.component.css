@@ -44,3 +44,11 @@ table td {
   text-align: center;
   white-space: unset;
 }
+
+.titulo {
+  color: navy;
+}
+
+.example-full-width {
+  width: 100%;
+}

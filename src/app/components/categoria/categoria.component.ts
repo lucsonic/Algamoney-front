@@ -3,31 +3,59 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../Api/api.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
   styleUrls: ['./categoria.component.css']
 })
-export class CategoriaComponent {
+export class CategoriaComponent implements OnInit {
+  titulo: any;
+  displayedColumns: string[] = ['codigo', 'nome', 'acao'];
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private dialog: MatDialog) {
-    this.categorias = [];
-    this.listarAllCategorias();
+    private dialog: MatDialog) {    
+    this.titulo = 'Categorias Cadastradas';
   }
 
-  categorias: Array<any>;
+  ngOnInit() {
+    this.listarAllCategorias(); 
+    this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+    this.paginator._intl.nextPageLabel = 'Próxima página';
+    this.paginator._intl.previousPageLabel = 'Página anterior';
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   listarAllCategorias() {
     this.apiService.listAllCategorias().subscribe(dados => {
-      this.categorias = dados.content
+      this.dataSource = new MatTableDataSource(dados);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      const sortState: Sort = { active: 'nome', direction: 'asc' };
+      this.sort.active = sortState.active;
+      this.sort.direction = sortState.direction;
+      this.sort.sortChange.emit(sortState);
     });
   }
 
@@ -64,8 +92,6 @@ export class CategoriaComponent {
       this.excluirCategoria(codigo)
     })
   }
-
-  displayedColumns: string[] = ['codigo', 'nome', 'acao'];
 
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
