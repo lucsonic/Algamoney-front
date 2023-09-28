@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  /* background-color: #B0E0E6; */
     background-image: linear-gradient(to bottom, #8bade0, #a1bbe4, #b6c9e7, #ccd8eb, #e1e6ee);
   z-index: 1;
 }
@@ -27,6 +26,7 @@
 .header div {
   width: 100%;
   text-align: right;
+  vertical-align: middle;
 }
 
 .header .title-group i {
@@ -35,4 +35,11 @@
 
 .header-spacer {
   flex: 1 1 auto;
+}
+.name-user {
+  margin-top: 7px;
+}
+
+.divZona {
+  display: flex;
 }

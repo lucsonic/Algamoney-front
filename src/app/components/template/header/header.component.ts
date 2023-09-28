@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiLogin } from 'src/app/services/api.login';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  usuario: any = '';
+
+  constructor(
+    private apiService: ApiLogin
+  ) {
+    this.usuario = apiService.obterUsuarioLogado
+  }
+
+  deslogar() {
+    this.apiService.deslogar();
+  }
 }

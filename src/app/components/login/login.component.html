@@ -1,0 +1,29 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <div class="divLogo">
+                <mat-divider></mat-divider>
+                <img class="logo" src="assets/img/logo.png" alt="logo">
+                <br>
+                <mat-divider></mat-divider>
+                <div class="cred">Credenciais de Acesso</div>
+            </div>
+            <form class="example-form login-form" [formGroup]="frm" (ngSubmit)="autenticar()">
+                <mat-form-field class="input-full-width">
+                    <input matInput formControlName="login" type="text" placeholder="Usuário">
+                </mat-form-field>
+                <mat-form-field class="input-full-width">
+                    <input matInput formControlName="password" type="password" placeholder="Senha">
+                </mat-form-field>
+                <div class="divButton">
+                    <button mat-raised-button color="primary" type="submit">
+                        <i class="material-icons">
+                            lock
+                        </i>
+                        &nbsp;&nbsp;Entrar
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

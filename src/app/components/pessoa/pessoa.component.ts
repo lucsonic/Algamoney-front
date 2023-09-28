@@ -1,7 +1,6 @@
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { ApiService } from './../../Api/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
@@ -9,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { ApiCliente } from 'src/app/services/api.cliente';
 
 @Component({
   selector: 'app-pessoa',
@@ -23,7 +23,8 @@ export class PessoaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private apiService: ApiService,
+  constructor(
+    private apiCliente: ApiCliente,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
@@ -47,7 +48,7 @@ export class PessoaComponent implements OnInit {
   }
 
   listarAllPessoas() {
-    this.apiService.listAllPessoas().subscribe(dados => {
+    this.apiCliente.listAllPessoas().subscribe(dados => {
       this.dataSource = new MatTableDataSource(dados);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -70,7 +71,7 @@ export class PessoaComponent implements OnInit {
     const pessoa = {
       codigo: element
     }
-    this.apiService.excluirPessoa(pessoa).subscribe(response => {
+    this.apiCliente.excluirPessoa(pessoa).subscribe(response => {
       window.location.reload()
       this.toastr.success('Pessoa excluída com sucesso!', 'Sucesso!');
     })

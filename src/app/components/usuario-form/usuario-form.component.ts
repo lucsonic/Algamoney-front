@@ -1,8 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/Api/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
+import { ApiUsuario } from 'src/app/services/api.usuario';
 
 @Component({
   selector: 'app-usuario-form',
@@ -10,21 +10,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./usuario-form.component.css']
 })
 export class UsuarioFormComponent {
-
   usuario: any;
   codigo: any;
   frm: FormGroup;
   titulo: any;
 
   constructor
-    (private apiService: ApiService,
+    (private apiService: ApiUsuario,
       private router: Router,
       private toastr: ToastrService,
-      private route: ActivatedRoute
+    private route: ActivatedRoute
     ) {
     this.usuario = {};
-    this.titulo = "Cadastro de Usuários";
     this.codigo = this.route.snapshot.params["codigo"];
+    this.titulo = !this.codigo ? "Cadastro de Usuários" : "Alteração de Usuário";
     this.frm = new FormGroup({
       nome: new FormControl(''),
       cpf: new FormControl(''),
@@ -55,9 +54,25 @@ export class UsuarioFormComponent {
       password: this.frm.controls['password'].value
     }
 
-    this.apiService.criarUsuario(usuario).subscribe(response => {
-      this.router.navigate(['usuarios']);
-      this.toastr.success('Usuário cadastrado com sucesso!', 'Sucesso!');
+    this.apiService.buscaUsuarioaLogin(usuario.login).subscribe(respLogin => {
+      this.apiService.buscaUsuarioaCpf(usuario.cpf).subscribe(respCpf => {
+        if (respLogin || respCpf) {
+          let campos = '';
+
+          if (respLogin)
+            campos += 'E-mail' + ', ';
+          if (respCpf)
+            campos += 'CPF' + ', ';
+
+          this.toastr.info('Já existe um usuário cadastrado com estes campos na base de dados:\n[ ' + campos.substring(0, campos.length - 2) + ' ]', "Atenção!");
+          return;
+        } else {
+          this.apiService.criarUsuario(usuario).subscribe(response => {
+            this.router.navigate(['usuarios']);
+            this.toastr.success('Usuário cadastrado com sucesso!', 'Sucesso!');
+          })
+        }
+      })
     })
   }
 

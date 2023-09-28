@@ -1,8 +1,8 @@
-import { ApiService } from './../../Api/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiCategoria } from 'src/app/services/api.categoria';
 
 export interface Categoria {
   codigo: number,
@@ -22,14 +22,14 @@ export class CadastroCategoriaComponent {
   titulo: any;
 
   constructor
-    (private apiService: ApiService,
+    (private apiService: ApiCategoria,
       private router: Router,
       private toastr: ToastrService,
       private route: ActivatedRoute
     ) {
     this.categoria = {};
     this.codigo = this.route.snapshot.params["codigo"];
-    this.titulo = "Cadastro de Categorias";
+    this.titulo = !this.codigo ? "Cadastro de Categorias" : "Alteração de Categoria";
     this.frm = new FormGroup({
       nome: new FormControl('')
     })
@@ -49,9 +49,15 @@ export class CadastroCategoriaComponent {
   criar() {
     const categoria = { nome: this.frm.controls['nome'].value }
 
-    this.apiService.criarCategoria(categoria).subscribe(response => {
-      this.router.navigate(['categorias']);
-      this.toastr.success('Categoria cadastrada com sucesso!', 'Sucesso!');
+    this.apiService.buscaCategoriaNome(categoria.nome).subscribe(resp => {
+      if (resp) {
+        this.toastr.info('Já existe uma categoria cadastrada com este nome!', "Atenção!");
+      } else {
+        this.apiService.criarCategoria(categoria).subscribe(response => {
+          this.router.navigate(['categorias']);
+          this.toastr.success('Categoria cadastrada com sucesso!', 'Sucesso!');
+        })
+      }
     })
   }
 

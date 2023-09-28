@@ -4,11 +4,11 @@ import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.compo
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from './../../Api/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { ApiUsuario } from 'src/app/services/api.usuario';
 
 @Component({
   selector: 'app-usuarios',
@@ -23,7 +23,7 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private apiService: ApiService,
+  constructor(private apiService: ApiUsuario,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,

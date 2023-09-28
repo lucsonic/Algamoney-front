@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from 'src/app/Api/api.service';
+import { ApiCliente } from 'src/app/services/api.cliente';
+import { ApiService } from 'src/app/services/api.service';
 
 export interface Pessoa {
   codigo: number,
@@ -31,13 +32,14 @@ export class PessoaFormComponent {
 
   constructor
     (private apiService: ApiService,
+    private apiCliente: ApiCliente,
       private router: Router,
       private toastr: ToastrService,
       private route: ActivatedRoute
     ) {
     this.pessoa = {};
-    this.titulo = "Cadastro de Clientes";
     this.codigo = this.route.snapshot.params["codigo"];
+    this.titulo = !this.codigo ? "Cadastro de Clientes" : "Alteração de Cliente";
     this.frm = new FormGroup({
       nome: new FormControl(''),
       logradouro: new FormControl(''),
@@ -60,7 +62,7 @@ export class PessoaFormComponent {
       return
     }
     const pessoa = { codigo: this.codigo }
-    this.apiService.findPessoa(pessoa).subscribe(r => {
+    this.apiCliente.findPessoa(pessoa).subscribe(r => {
       this.frm.controls['nome'].setValue(r.nome),
       this.frm.controls['logradouro'].setValue(r.logradouro),
       this.frm.controls['ativo'].setValue(r.ativo),
@@ -86,7 +88,7 @@ export class PessoaFormComponent {
       estado: this.frm.controls['estado'].value
     }
 
-    this.apiService.criarPessoa(pessoa).subscribe(response => {
+    this.apiCliente.criarPessoa(pessoa).subscribe(response => {
       this.router.navigate(['pessoas']);
       this.toastr.success('Pessoa cadastrada com sucesso!', 'Sucesso!');
     })
@@ -105,7 +107,7 @@ export class PessoaFormComponent {
       cep: this.frm.controls['cep'].value,
       estado: this.frm.controls['estado'].value
     }
-    this.apiService.alterarPessoa(pessoa).subscribe(response => {
+    this.apiCliente.alterarPessoa(pessoa).subscribe(response => {
       this.router.navigate(['pessoas']);
       this.toastr.success('Pessoa alterada com sucesso!', 'Sucesso!');
     })

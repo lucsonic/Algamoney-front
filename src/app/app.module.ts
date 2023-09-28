@@ -34,10 +34,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgxMaskModule } from 'ngx-mask-2';
 import { MatSortModule } from '@angular/material/sort';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/template/main/main.component';
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { MatSortModule } from '@angular/material/sort';
     ConfirmDialogComponent,
     UsuariosComponent,
     UsuarioFormComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

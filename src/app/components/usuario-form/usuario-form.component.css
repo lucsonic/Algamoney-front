@@ -53,3 +53,15 @@
   text-align: right;
   display: inline-block;
 }
+.card-title {
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+.card-header {
+  background-color: #e6e3e3;
+}
+
+mat-card-content {
+  padding-top: 20px;
+}

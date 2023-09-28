@@ -2,13 +2,13 @@ import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.compo
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from './../../Api/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ApiCategoria } from 'src/app/services/api.categoria';
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
@@ -23,7 +23,7 @@ export class CategoriaComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private apiService: ApiService,
+    private apiService: ApiCategoria,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
